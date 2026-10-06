@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Coupang Style Page</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--cp-bg, #f5f5f5);
+      color: var(--cp-dark, #111);
+      overflow-x: hidden;
+    }
+
+    /* Header Coupang */
+    .coupang-top-header {
+      background: #FFFFFF;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #EAEAEA;
+    }
+
+    .top-search-row {
+      display: flex;
+      align-items: center;
+      padding: 8px 12px;
+      gap: 10px;
+    }
+
+    .cp-logo-text {
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--cp-red, #D32F2F);
+      letter-spacing: -1px;
+      text-decoration: none;
+    }
+
+    .cp-search-bar {
+      flex: 1;
+      position: relative;
+    }
+
+    .cp-search-bar input {
+      width: 100%;
+      height: 36px;
+      border: 2px solid var(--cp-red, #D32F2F);
+      border-radius: 4px;
+      padding: 0 34px 0 10px;
+      font-size: 13px;
+      font-weight: 600;
+      outline: none;
+    }
+
+    .cp-search-icon {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+    }
+
+    .cp-nav-tabs {
+      display: flex;
+      background: #FFFFFF;
+      overflow-x: auto;
+      white-space: nowrap;
+      border-bottom: 1px solid #E5E5E5;
+      padding: 0 8px;
+    }
+
+    .cp-tab-item {
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #555;
+    }
+
+    .cp-tab-item.active {
+      color: var(--cp-red, #D32F2F);
+      border-bottom: 2px solid var(--cp-red, #D32F2F);
+    }
+
+    /* Hero Banner */
+    .hero-ab-container {
+      background: #FFFFFF;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .section-title-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 14px 6px;
+    }
+
+    .section-main-title {
+      font-size: 16px;
+      font-weight: 900;
+    }
+
+    .hero-product-card {
+      padding: 10px 14px 16px;
+      cursor: pointer;
+    }
+
+    .hero-img-box {
+      width: 100%;
+      height: 220px;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      background: #FAFAFA;
+      border: 1px solid #EAEAEA;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gift-badge {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(0, 0, 0, 0.8);
+      color: #FFF;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    .hero-badge-tag {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 800;
+      color: #FFF;
+      background: #D32F2F;
+    }
+
+    .hero-badge-tag.type-a { background: #2E7D32; }
+    .hero-badge-tag.type-b { background: #D32F2F; }
+
+    .hero-info-box {
+      margin-top: 10px;
+    }
+
+    .hero-item-title {
+      font-size: 15px;
+      font-weight: 800;
+      line-height: 1.4;
+      margin-bottom: 4px;
+    }
+
+    .hero-item-desc {
+      font-size: 12px;
+      color: #555;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .hero-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .hero-discount-rate {
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--cp-red, #D32F2F);
+    }
+
+    .hero-origin-price {
+      font-size: 12px;
+      color: #999;
+      text-decoration: line-through;
+    }
+
+    .hero-final-price {
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .hero-rocket-label {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--cp-blue, #1976D2);
+      margin-top: 4px;
+    }
+
+    .hero-ab-highlight {
+      margin-top: 8px;
+      padding: 8px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .hero-ab-highlight.type-a { background: #E8F5E9; color: #1B5E20; }
+    .hero-ab-highlight.type-b { background: #FFEBEE; color: #B71C1C; }
+
+    /* Detail View */
+    #detail-page-view {
+      display: none;
+      min-height: 100vh;
+      background: #FFFFFF;
+      padding-bottom: 70px;
+    }
+
+    .detail-nav-bar {
+      position: sticky;
+      top: 0;
+      background: #FFF;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 14px;
+      border-bottom: 1px solid #EEE;
+    }
+
+    .detail-hero-box {
+      width: 100%;
+      height: 260px;
+      background: #FAFAFA;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid #EEE;
+    }
+
+    .detail-hero-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .detail-body {
+      padding: 16px;
+    }
+
+    .detail-brand-name {
+      color: var(--cp-blue, #1976D2);
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .detail-product-title {
+      font-size: 17px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .detail-pricing-box {
+      border-top: 1px solid #F0F0F0;
+      border-bottom: 1px solid #F0F0F0;
+      padding: 12px 0;
+      margin-bottom: 16px;
+    }
+
+    .detail-bottom-actions {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #FFFFFF;
+      border-top: 1px solid #EAEAEA;
+      padding: 10px 14px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-cp-cart {
+      flex: 1;
+      height: 44px;
+      border: 1px solid #CCC;
+      background: #FFF;
+      font-weight: 700;
+      border-radius: 4px;
+    }
+
+    .btn-cp-buy {
+      flex: 2;
+      height: 44px;
+      border: none;
+      background: var(--cp-blue, #1976D2);
+      color: #FFF;
+      font-size: 14px;
+      font-weight: 800;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =========================================
+       VIEW 1: TRANG CHỦ COUPANG (A/B TEST)
+       ========================================= -->
+  <div id="home-page-view">
+    <!-- Header -->
+    <header class="coupang-top-header">
+      <div class="top-search-row">
+        <span class="cp-logo-text">coupang</span>
+        <div class="cp-search-bar">
+          <input type="text" value="신발mlb" readonly>
+          <span class="cp-search-icon">🔍</span>
+        </div>
+        <span style="font-size: 20px;">🛒</span>
+      </div>
+      <div class="cp-nav-tabs">
+        <div class="cp-tab-item active">골드박스</div>
+        <div class="cp-tab-item">로켓배송</div>
+        <div class="cp-tab-item">로켓프레시</div>
+        <div class="cp-tab-item">기획전</div>
+      </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero-ab-container">
+      <div class="section-title-bar">
+        <div class="section-main-title">🔥 오늘의 타임특가</div>
+        <div style="font-size: 12px; color: var(--cp-gray);">오늘만 특가 할인</div>
+      </div>
+
+      <div class="hero-product-card" id="ab-hero-card">
+        <div class="hero-img-box">
+          <span class="hero-badge-tag" id="hero-badge">특가</span>
+          
+          <!-- Ảnh sản phẩm MLB Big Ball Chunky -->
+          <img src="https://d2u1z1lopyfwlx.cloudfront.net/thumbnails/ff5df797-9e4a-579a-a221-389530faa4a5/3e8cf789-6124-5215-bbd5-ca04762847e5.jpg" alt="MLB Chunky Sneaker"/>
+
+          <span class="gift-badge">🎁 슈즈렉 1:1 증정</span>
+        </div>
+
+        <div class="hero-info-box">
+          <h2 class="hero-item-title" id="hero-title">MLB 빅볼청키 BIG A 로딩중...</h2>
+          <div class="hero-item-desc" id="hero-desc">로딩중...</div>
+
+          <div class="hero-price-row">
+            <span class="hero-discount-rate">34%</span>
+            <span class="hero-origin-price">149,000원</span>
+            <span class="hero-final-price">98,000원</span>
+          </div>
+
+          <div class="hero-rocket-label">
+            🚀 로켓배송 | 내일(수) 새벽 7시 전 도착 보장
+          </div>
+
+          <div class="hero-ab-highlight" id="hero-message"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- =========================================
+       VIEW 2: CHI TIẾT SẢN PHẨM (KHI CLICK VÀO)
+       ========================================= -->
+  <div id="detail-page-view">
+    <div class="detail-nav-bar">
+      <button onclick="backToHome()" style="background:none; border:none; font-size:18px; cursor:pointer; font-weight:bold;">←</button>
+      <span style="font-weight: 800; font-size: 15px;">상품상세</span>
+      <span style="font-size: 18px;">🛒</span>
+    </div>
+
+    <div class="detail-hero-box">
+      <img src="https://d2u1z1lopyfwlx.cloudfront.net/thumbnails/ff5df797-9e4a-579a-a221-389530faa4a5/3e8cf789-6124-5215-bbd5-ca04762847e5.jpg" alt="MLB Chunky Sneaker"/>
+    </div>
+
+    <div class="detail-body">
+      <div class="detail-brand-name">MLB KOREA OFFICIAL</div>
+      <h1 class="detail-product-title" id="detail-title-target">MLB 운동화 남녀공용 BIG A 키높이 신발 + 벨뉴슈즈렉 증정</h1>
+
+      <div class="detail-pricing-box">
+        <div style="font-size: 13px; color: #888; text-decoration: line-through;">정상가 149,000원</div>
+        <div style="display:flex; align-items:baseline; gap:8px;">
+          <span style="color:var(--cp-red, #D32F2F); font-size:24px; font-weight:900;">34%</span>
+          <span style="font-size:24px; font-weight:900; color:#111;">98,000원</span>
+        </div>
+        <div style="color:var(--cp-blue, #1976D2); font-size:13px; font-weight:800; margin-top:4px;">
+          🚀 로켓배송 | 내일(수) 새벽 7시 전 도착 보장
+        </div>
+      </div>
+
+      <div style="font-size: 13px; color: #444; line-height: 1.6;">
+        • <b>기본 구성</b>: MLB BIG A 정품 키높이 운동화 (6cm 솔)<br>
+        • <b>단독 사은품</b>: 프리미엄 벨뉴슈즈렉 (신발 정리대) 100% 동봉 출고<br>
+        • <b>배송 혜택</b>: 로켓배송 / 30일 이내 무료 반품 보장
+      </div>
+    </div>
+
+    <div class="detail-bottom-actions">
+      <button class="btn-cp-cart">장바구니</button>
+      <button class="btn-cp-buy" onclick="alert('주문이 완료되었습니다. (Conversion 측정 완료)')">
+        바로구매 (로켓배송)
+      </button>
+    </div>
+  </div>
+
+  <!-- =========================================
+       LOGIC A/B TEST JAVASCRIPT
+       ========================================= -->
+  <script>
+    // 1. Phân bổ ngẫu nhiên 50/50 giữa Group A và Group B
+    var abGroup = Math.random() < 0.5 ? 'A' : 'B';
+
+    var abVariants = {
+      A: {
+        badgeText: "쿠팡단독 사은품 혜택",
+        badgeType: "type-a",
+        title: "MLB 운동화 남녀공용 BIG A 키높이 신발 + 벨뉴슈즈렉 증정",
+        desc: "자연스러운 6cm 키높이 핏 완성 & 프리미엄 신발 정리대 1:1 무료 증정 혜택을 누려보세요.",
+        message: "✨ 와우회원 34% 즉시할인 + 무료배송 & 무료반품 보장"
+      },
+      B: {
+        badgeText: "마감임박 한정특가",
+        badgeType: "type-b",
+        title: "[품절임박] MLB 운동화 BIG A 키높이 신발 (슈즈렉 증정 오늘마감)",
+        desc: "오늘 24:00 이후 사은품 증정이 종료되며, 인기 사이즈(230~250)는 잔여 3켤레 남았습니다.",
+        message: "⚠️ 망설이면 사은품 혜택 마감 / 내일부터 정상가 149,000원으로 환원됩니다."
+      }
+    };
+
+    var activeVariant = abVariants[abGroup];
+    document.getElementById('hero-badge').textContent = activeVariant.badgeText;
+    document.getElementById('hero-badge').className = 'hero-badge-tag ' + activeVariant.badgeType;
+    document.getElementById('hero-title').textContent = activeVariant.title;
+    document.getElementById('hero-desc').textContent = activeVariant.desc;
+    document.getElementById('hero-message').textContent = activeVariant.message;
+    document.getElementById('hero-message').className = 'hero-ab-highlight ' + activeVariant.badgeType;
+
+    console.log('[A/B Test Variant] Group: ' + abGroup);
+
+    var heroCard = document.getElementById('ab-hero-card');
+    var homeView = document.getElementById('home-page-view');
+    var detailView = document.getElementById('detail-page-view');
+    var detailTitleTarget = document.getElementById('detail-title-target');
+
+    heroCard.addEventListener('click', function() {
+      console.log('[A/B Test Click Recorded] Variant ' + abGroup);
+      detailTitleTarget.textContent = activeVariant.title;
+      homeView.style.display = 'none';
+      detailView.style.display = 'block';
+      window.scrollTo(0, 0);
+    });
+
+    function backToHome() {
+      detailView.style.display = 'none';
+      homeView.style.display = 'block';
+      window.scrollTo(0, 0);
+    }
+  </script>
+</body>
+</html>
